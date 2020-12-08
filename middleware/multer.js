@@ -1,6 +1,7 @@
 const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
+const keys = require('../config/keys');
 
 const MIME_TYPE_MAP = {
   'image/png': 'png',
@@ -9,12 +10,11 @@ const MIME_TYPE_MAP = {
 };
 
 aws.config.update({
-  secretAccessKey: 'rzqXMrIFtHLe5WJRBFXcP78r63mxVsDAqSwoYAyN',
-  accessKeyId: 'AKIAISBMAAZE7V4FDIBA'
+  secretAccessKey: keys.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: keys.AWS_ACCESS_KEY_ID
 });
 
 // region: 'us-east-1'
-
 const s3 = new aws.S3();
 
 const fileFilter = async (req, file, cb) => {
